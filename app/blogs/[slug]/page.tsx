@@ -19,8 +19,19 @@ export interface BlogsInterface {
 }
 
 
-export default async function Slug({ params }: { params: { slug: string } }) {
-    const slug = params?.slug
+type PageProps = {
+    params: { slug: string };
+};
+
+
+
+
+
+
+
+export default async function Slug({ params }: PageProps) {
+    const resolvedParams = await params; // Resolve the promise if necessary
+    const { slug } = resolvedParams;
     const data = await client.fetch(`*[_type == "blogs" && slug.current == $slug]{
         author,
         _id,
