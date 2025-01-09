@@ -20,7 +20,7 @@ export interface BlogsInterface {
 
 
 export default async function Slug({ params }: { params: { slug: string } }) {
-    const slug = params.slug
+    const slug = params?.slug
     const data = await client.fetch(`*[_type == "blogs" && slug.current == $slug]{
         author,
         _id,
